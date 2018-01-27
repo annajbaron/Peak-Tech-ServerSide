@@ -2,11 +2,6 @@ class Api::V1::UsersController < Api::ApplicationController
   before_action :authenticate_user!, except: [:create]
   before_action :find_user, only: [:show, :destroy, :update]
 
-    def index
-      @users = User.order(created_at: :desc)
-      render json: @users 
-    end
-
     def show
       render json: @user
     end
@@ -37,10 +32,11 @@ class Api::V1::UsersController < Api::ApplicationController
       end
     end
 
+
   private
 
   def find_user
-    @user = User.find params[:id]
+    @user = current_user
   end
 
   def user_params

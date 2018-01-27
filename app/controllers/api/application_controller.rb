@@ -25,12 +25,16 @@ class Api::ApplicationController < ApplicationController
    end
   helper_method :current_user
 
+  def verify_admin!
+    head :unauthorized unless current_user&.is_admin
+  end
+
   private
   def api_key
     request.headers['AUTHORIZATION']
   end
 
   def authenticate_user!
-   head :unauthorized unless user_signed_in?
+    head :unauthorized unless user_signed_in?
   end
 end
