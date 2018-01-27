@@ -15,7 +15,7 @@ class Api::V1::OrganizationsController < Api::ApplicationController
     organization = Organization.new organization_params
 
     if organization.save
-      render json: { id: organization.id }
+      render json: organization
     else
       render json: { error: organization.errors.full_messages}
     end
