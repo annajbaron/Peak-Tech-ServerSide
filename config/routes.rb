@@ -3,13 +3,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :tokens, only: [:create]
-      resources :users
-
-      namespace :admin do
-        resources :users, only: [:index] do
-          member do
-            patch :toggle_admin
-          end
+      resources :users do
+        member do
+          patch :toggle_admin
         end
       end
     end

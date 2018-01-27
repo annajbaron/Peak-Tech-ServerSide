@@ -1,37 +1,48 @@
 class Api::V1::UsersController < Api::ApplicationController
   before_action :authenticate_user!, except: [:create]
   before_action :find_user, only: [:show, :destroy, :update]
+  before_action :verify_admin!, only: [:index, :toggle_admin]
 
-    def show
+  def index
+    @users = User.order(created_at: :desc)
+    render json: @users, each_serializer: UserSerializer
+  end
+
+  def show
+    render json: @user
+  end
+
+  def create
+    user = User.new(user_params)
+
+    if user.save
+      render json: { id: user.id }
+    else
+      render json: { error: user.errors.full_messages }
+    end
+  end
+
+  def update
+    if @user.update user_params
       render json: @user
+    else
+      render json: { error: @user.errors.full_messages }
     end
+  end
 
-    def create
-      user = User.new(user_params)
-
-      if user.save
-        render json: { id: user.id }
-      else
-        render json: { error: user.errors.full_messages }
-      end
+  def destroy
+    if @user.destroy
+      render json: { message: 'Successfully deleted!!!' }
+    else
+      head :bad_request
     end
+  end
 
-    def update
-      if @user.update user_params
-        render json: @user
-      else
-        render json: { error: @user.errors.full_messages }
-      end
-    end
-
-    def destroy
-      if @user.destroy
-        render json: { message: 'Successfully deleted!!!' }
-      else
-        head :bad_request
-      end
-    end
-
+  def toggle_admin
+    @user = User.find(params[:id])
+    @user.toggle!(:is_admin)
+    render json: @user, serializer: UserSerializer
+  end
 
   private
 
