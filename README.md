@@ -8,6 +8,7 @@
   - rails g model tagging organization:references tech_stack:references
 * Update Gemfile
 
+  - rails g controller Api::V1::Tokens --no-assets --no-helper --skip-template-engine
 
 
 This README would normally document whatever steps are necessary to get the
