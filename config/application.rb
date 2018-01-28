@@ -25,7 +25,7 @@ module PeakTechServer
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.active_job.queue_adapter = :delayed_job
-    
+
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'

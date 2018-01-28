@@ -36,11 +36,9 @@ gem 'jquery-rails'
 gem 'bootstrap'
 gem 'faraday'
 gem 'rack-cors'
-gem 'simple_form'
 gem 'friendly_id', '~> 5.2.3'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
-gem 'fog'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'underscore-rails'
@@ -67,6 +65,7 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'hirb'
+  gem 'dotenv-rails'
 end
 
 group :development do
@@ -84,4 +83,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'meetup_client'
 
-gem 'kaminari'
+gem 'aylien_news_api', '~> 1.0.0'

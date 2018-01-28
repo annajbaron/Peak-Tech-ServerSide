@@ -6,6 +6,8 @@ Rails.application.routes.draw do
       resources :organizations
       resources :tech_stacks
       resources :events, only: [:index]
+      resources :search_terms
+      resources :stories, only: [:index]
       resources :tokens, only: [:create]
       resources :users do
         member do

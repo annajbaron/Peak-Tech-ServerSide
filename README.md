@@ -35,20 +35,27 @@
   - rails generate friendly_id
   - rails g migration add_slug_to_organizations slug
 
+* Add SearchTerm model
+   - rails g model SearchTerm title
+* Add Story model
+   - rails g model story title url search_term_id
+   - rails generate migration add_story_id_to_stories story_id:integer
+
+* Add stories api controller
+   - rails g controller Api::V1::Stories --no-assets --no-helper --skip-template-engine
+
+   - rails g serializer meetUp name
 
 
+* Add stories_sync job
+  - rails g job stories_sync
+
+* Add story serializer
+  - rails g serializer story title last_name url search_term_id
+
+* Add search terms api controller
+   - rails g controller Api::V1::SearchTerms --no-assets --no-helper --skip-template-engine
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-*
+* Add search term  serializer
+  - rails g serializer search_term title
