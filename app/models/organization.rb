@@ -4,4 +4,5 @@ class Organization < ApplicationRecord
   validates :name, presence: true, uniqueness: true
   has_many :users, dependent: :nullify
 
+  accepts_nested_attributes_for :tech_stacks
 end
