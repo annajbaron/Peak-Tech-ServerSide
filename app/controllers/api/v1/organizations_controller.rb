@@ -15,7 +15,7 @@ class Api::V1::OrganizationsController < Api::ApplicationController
     organization = Organization.new organization_params
 
     if organization.save
-      render json: { id: organization.id }
+      render json: organization
     else
       render json: { error: organization.errors.full_messages}
     end
@@ -37,7 +37,7 @@ class Api::V1::OrganizationsController < Api::ApplicationController
   end
 
   def organization_params
-    params.require(:organization).permit(:name, :address, :overview, :employees, :team_size, :website, :twitter, :logo)
+    params.require(:organization).permit(:name, :address, :overview, :employees, :team_size, :website, :twitter, :logo, :tech_stack_ids => [])
   end
 
 end
