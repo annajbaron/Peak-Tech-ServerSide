@@ -1,4 +1,6 @@
 class Organization < ApplicationRecord
+  paginates_per 20
+
   has_many :taggings, dependent: :destroy
   has_many :tech_stacks, through: :taggings
   validates :name, presence: true, uniqueness: true
@@ -11,5 +13,5 @@ class Organization < ApplicationRecord
 
   extend FriendlyId
   friendly_id :name, use: [:slugged, :history, :finders]
-  
+
 end

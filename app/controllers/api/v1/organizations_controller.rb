@@ -7,8 +7,17 @@ class Api::V1::OrganizationsController < Api::ApplicationController
   end
 
   def index
-    @organizations = Organization.order(created_at: :desc)
-    render json: @organizations
+    scope = Organization.order(created_at: :desc)
+
+    if params[:search_term]
+      scope = scope.where("name LIKE ?", "%#{params[:search_term]}%")
+    end
+
+    if params[:page]
+      scope = scope.page(params[:page])
+    end
+
+    render json: scope
   end
 
   def create
