@@ -5,7 +5,8 @@ class Api::V1::MeetUpsController < Api::ApplicationController
   before_action :verify_admin!
 
     def index
-      @meet_ups = meet_up.order(created_at: :desc)
+      meet_ups = meet_up.order(created_at: :desc)
+      render json: meet_ups
     end
 
     def show
@@ -41,7 +42,7 @@ class Api::V1::MeetUpsController < Api::ApplicationController
   private
 
   def find_meet_up
-    @meet_up = meet_up.find params[:id]
+    @meet_up = MeetUp.find params[:id]
   end
 
   def meet_up_params
