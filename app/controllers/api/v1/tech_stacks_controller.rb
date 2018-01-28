@@ -1,6 +1,6 @@
 class Api::V1::TechStacksController < Api::ApplicationController
   before_action :authenticate_user!
-  before_action :find_tech_stack, only: [:show, :destroy]
+  before_action :find_tech_stack, only: [:show, :update, :destroy]
 
   def show
     render json: @tech_stack
@@ -20,6 +20,14 @@ class Api::V1::TechStacksController < Api::ApplicationController
       render json: { error: tech_stack.errors.full_messages}
     end
 
+  end
+
+  def update
+    if @tech_stack.update tech_stack_params
+      render json: @tech_stack
+    else
+      render json: { error: @tech_stack.errors.full_messages }
+    end
   end
 
   def destroy
