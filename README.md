@@ -22,12 +22,11 @@
   - rails g controller Api::V1::Organizations --no-assets --no-helper --skip-template-engine
   - rails g serializer organization name address overview:text employees:integer team_size:integer website twitter logo
 
-
-* Add techStack api controller
-  - rails g controller Api::V1::TechStacks --no-assets --no-helper --skip-template-engine
-  - rails g serializer tech_stack name
-
-
+  * Add meetUp model
+     - rails g model meetUp name
+  * Add meetUp api controller
+     - rails g controller Api::V1::MeetUps --no-assets --no-helper --skip-template-engine
+     - rails g serializer meetUp name
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
