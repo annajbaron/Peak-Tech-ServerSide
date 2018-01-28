@@ -1,6 +1,6 @@
 class Api::V1::OrganizationsController < Api::ApplicationController
   before_action :authenticate_user!
-  before_action :find_organization, only: [:show, :destroy]
+  before_action :find_organization, only: [:show, :update, :destroy]
 
   def show
     render json: @organization
@@ -20,6 +20,15 @@ class Api::V1::OrganizationsController < Api::ApplicationController
       render json: { error: organization.errors.full_messages}
     end
 
+  end
+
+  def update
+    @organization.slug = nil
+    if @organization.update organization_params
+      render json: @organization
+    else
+      render json: { error: @organization.errors.full_messages }
+    end
   end
 
   def destroy

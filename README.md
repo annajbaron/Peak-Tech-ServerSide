@@ -22,31 +22,33 @@
   - rails g controller Api::V1::Organizations --no-assets --no-helper --skip-template-engine
   - rails g serializer organization name address overview:text employees:integer team_size:integer website twitter logo
 
-  * Add meetUp model
-     - rails g model meetUp name
-  * Add meetUp api controller
-     - rails g controller Api::V1::MeetUps --no-assets --no-helper --skip-template-engine
-     - rails g serializer meetUp name
+* Add meetUp model
+   - rails g model meetUp name
+* Add meetUp api controller
+   - rails g controller Api::V1::MeetUps --no-assets --no-helper --skip-template-engine
+   - rails g serializer meetUp name
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Geocoding - Organization
+  - rails g migration add_geo_code_to_organizations longitude:float latitude:float
 
-Things you may want to cover:
+* Friendly Id - Organization
+  - rails generate friendly_id
+  - rails g migration add_slug_to_organizations slug
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+
+
+
+
+
+
+
+
+*
