@@ -1,7 +1,7 @@
 class Api::V1::UsersController < Api::ApplicationController
-  before_action :authenticate_user!, except: [:create]
+  before_action :authenticate_user!, except: [:create,:index]
   before_action :find_user, only: [:show, :destroy, :update]
-  before_action :verify_admin!, only: [:index, :toggle_admin]
+  before_action :verify_admin!, only: [ :toggle_admin]
 
   def index
     @users = User.order(created_at: :desc)

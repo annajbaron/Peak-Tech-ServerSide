@@ -1,8 +1,8 @@
 class Api::V1::MeetUpsController < Api::ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :find_meet_up, only: [:show, :destroy, :update]
-  before_action :verify_admin!
+  before_action :verify_admin!, except: [:index]
 
     def index
       meet_ups = MeetUp.order(created_at: :desc)

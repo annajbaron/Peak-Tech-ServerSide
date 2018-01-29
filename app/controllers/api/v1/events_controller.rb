@@ -1,5 +1,5 @@
 class Api::V1::EventsController < Api::ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
 
   def index
     scope = Event.order(created_at: :desc)
