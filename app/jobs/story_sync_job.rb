@@ -17,6 +17,8 @@ class StorySyncJob < ApplicationJob
         Story.create!({
           search_term: search_term,
           title: story.title,
+          body: story.body,
+          image: story.media[0]&.url,
           story_id: story.id,
           url: story.links.canonical,
           date: story.published_at
