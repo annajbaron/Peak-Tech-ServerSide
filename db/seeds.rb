@@ -103,18 +103,18 @@ search_terms = SearchTerm.all
 puts Cowsay.say("Create #{search_terms.count} search_terms", :tux)
 #
 # #----------------------------------------------------- stories
-s_number = 1
-50.times do
-  Story.create(
-    title:Faker::Cat.name,
-    date: Faker::Date.forward(60),
-    url: Faker::Internet.url('news.com'),
-    search_term: SearchTerm.all.sample,
-    story_id: s_number += 1)
-end
-
-stories = Story.all
-puts Cowsay.say("Create #{stories.count} stories", :tux)
+# s_number = 1
+# 50.times do
+#   Story.create(
+#     title:Faker::Cat.name,
+#     date: Faker::Date.forward(60),
+#     url: Faker::Internet.url('news.com'),
+#     search_term: SearchTerm.all.sample,
+#     story_id: s_number += 1)
+# end
+#
+# stories = Story.all
+# puts Cowsay.say("Create #{stories.count} stories", :tux)
 
 # #-------------------------------------------------------------------
 puts "Login as admin with #{super_user.email} and password of '#{PASSWORD}'!"
