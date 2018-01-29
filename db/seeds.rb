@@ -139,6 +139,7 @@ puts Cowsay.say("Create #{search_terms.count} search_terms", :tux)
 # #----------------------------------------------------- stories
 
 StorySyncJob.new.perform
+
 # s_number = 1
 # 50.times do
 #   Story.create(
@@ -149,8 +150,12 @@ StorySyncJob.new.perform
 #     story_id: s_number += 1)
 # end
 
+
 stories = Story.all
 puts Cowsay.say("Create #{stories.count} stories", :tux)
+
+
+
 
 # #-------------------------------------------------------------------
 puts "Login as admin with #{super_user.email} and password of '#{PASSWORD}'!"
