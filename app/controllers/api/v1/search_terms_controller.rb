@@ -1,8 +1,8 @@
 class Api::V1::SearchTermsController < Api::ApplicationController
 
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :find_search_term, only: [:show, :destroy, :update]
-  before_action :verify_admin!
+  before_action :verify_admin!, except: [:index]
 
     def index
       search_terms = SearchTerm.order(created_at: :desc)

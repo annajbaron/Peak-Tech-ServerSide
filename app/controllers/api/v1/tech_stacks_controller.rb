@@ -1,5 +1,5 @@
 class Api::V1::TechStacksController < Api::ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index]
   before_action :find_tech_stack, only: [:show, :update, :destroy]
 
   def show
