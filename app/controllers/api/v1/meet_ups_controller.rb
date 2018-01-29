@@ -5,7 +5,7 @@ class Api::V1::MeetUpsController < Api::ApplicationController
   before_action :verify_admin!, except: [:index]
 
     def index
-      meet_ups = meet_up.order(created_at: :desc)
+      meet_ups = MeetUp.order(created_at: :desc)
       render json: meet_ups
     end
 
