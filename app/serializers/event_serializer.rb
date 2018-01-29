@@ -4,9 +4,9 @@ class EventSerializer < ActiveModel::Serializer
     object.name
   end
   def start
-    object.date.split("-").join(",").to_s
+    object.date.split(" ")[0].split("-").join(",").to_s
   end
   def end
-    object.date.split("-").join(",").to_s
+    object.date.split(" ")[0].split("-").join(",").to_s
   end
 end
