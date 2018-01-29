@@ -5,7 +5,7 @@ class StorySyncJob < ApplicationJob
     SearchTerm.all.each do |search_term|
       params = {
         title: search_term.title,
-        published_at_start:  "NOW-1DAYS",
+        published_at_start:  "NOW-30DAYS",
         published_at_end: "NOW"
       }
 
