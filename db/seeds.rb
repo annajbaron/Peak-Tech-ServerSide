@@ -115,7 +115,9 @@ puts Cowsay.say("Create #{events.count} events", :cow)
 #
 # #----------------------------------------------------- search_terms
 searchterms = [
-  'Vancouver-Tech',
+  'Vancouver Tech',
+  'Vancouver Startups',
+  'Vancouver Technology',
   'Vancouver-PHP',
   'vancouver-ruby',
   'BrainStation-Vancouver',
