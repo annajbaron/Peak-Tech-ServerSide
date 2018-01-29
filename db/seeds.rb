@@ -74,35 +74,72 @@ users = User.all
 puts Cowsay.say("Create #{users.count} users", :tux)
 #
 # #----------------------------------------------------- Meet-Up
-20.times do
-  MeetUp.create name: Faker::Team.name
+id = [
+  'YVR-Startups',
+  'Vancouver-PHP',
+  'vancouver-ruby',
+  'BrainStation-Vancouver',
+  'VancouverTechMeetup',
+  'Vancouver-Hack-Space',
+  'TechVancouverOrg',
+  'Vancouver-Postgres-Database',
+  'The-Vancouver-UX-Research-Lab',
+  'codecoffeeyvr'
+]
+id.each do |id_name|
+  MeetUp.create(name: id_name)
 end
+
+# 10.times do
+#   MeetUp.create name: id.sample
+# end
 meet_ups = MeetUp.all
 puts Cowsay.say("Create #{meet_ups.count} meet_ups", :cow)
 #
 # #----------------------------------------------------- Event
-e_number = 1
-30.times do
-  Event.create(
-    name: Faker::Dog.name,
-    date: Faker::Date.forward(23),
-    url: Faker::Internet.url,
-    meet_up: MeetUp.all.sample,
-    event_id: e_number += 1)
-end
+
+EventSyncJob.new.perform
+# e_number = 1
+# 30.times do
+#   Event.create(
+#     name: Faker::Dog.name,
+#     date: Faker::Date.forward(23),
+#     url: Faker::Internet.url,
+#     meet_up: MeetUp.all.sample,
+#     event_id: e_number += 1)
+# end
 events = Event.all
 puts Cowsay.say("Create #{events.count} events", :cow)
 
 
 #
 # #----------------------------------------------------- search_terms
-20.times do
-  SearchTerm.create title: Faker::Coffee.blend_name
+searchterms = [
+  'Vancouver-Tech',
+  'Vancouver-PHP',
+  'vancouver-ruby',
+  'BrainStation-Vancouver',
+  'VancouverTechMeetup',
+  'Vancouver-Hack-Space',
+  'TechVancouverOrg',
+  'Vancouver-Postgres-Database',
+  'The-Vancouver-UX-Research-Lab',
+  'codecoffeeyvr'
+]
+
+searchterms.each do |term|
+  SearchTerm.create(title: term)
 end
+# 20.times do
+#   SearchTerm.create title: Faker::Coffee.blend_name
+# end
 search_terms = SearchTerm.all
 puts Cowsay.say("Create #{search_terms.count} search_terms", :tux)
 #
 # #----------------------------------------------------- stories
+
+StorySyncJob.new.perform
+
 # s_number = 1
 # 50.times do
 #   Story.create(
@@ -112,9 +149,13 @@ puts Cowsay.say("Create #{search_terms.count} search_terms", :tux)
 #     search_term: SearchTerm.all.sample,
 #     story_id: s_number += 1)
 # end
-#
-# stories = Story.all
-# puts Cowsay.say("Create #{stories.count} stories", :tux)
+
+
+stories = Story.all
+puts Cowsay.say("Create #{stories.count} stories", :tux)
+
+
+
 
 # #-------------------------------------------------------------------
 puts "Login as admin with #{super_user.email} and password of '#{PASSWORD}'!"
