@@ -1,4 +1,12 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :name, :date, :url, :meet_up_id
-
+  attributes :id, :title, :date, :start, :end, :url, :meet_up_id
+  def title
+    object.name
+  end
+  def start
+    object.date.split("-").join(",").to_s
+  end
+  def end
+    object.date.split("-").join(",").to_s
+  end
 end
